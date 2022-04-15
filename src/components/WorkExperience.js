@@ -47,7 +47,7 @@ class WorkExperience extends Component {
                         value={finishDate}
                     />
 
-                    <button onClick={this.props.add}>Add</button>
+                    <button onClick={this.props.add} value="work">Add</button>
                 </div>
                 
             </section>

@@ -24,6 +24,15 @@ class CV extends Component {
                 city: "",
                 startDate: "",
                 finishDate: ""
+            },
+            educationInfoList: [],
+            educationInfo: {
+                universityName: "",
+                schoolLocation: "",
+                degree: "",
+                subject: "",
+                enrollementDate: "",
+                graduationDate: "",
             }
         };
 
@@ -39,20 +48,39 @@ class CV extends Component {
 
     handleAdd(event) {
         event.preventDefault()
+        console.log(event.target.value)
         this.setState((prevState) => {
-            let newState = {...prevState}
-            let newWorkInfo = {
-                position: "",
-                company: "",
-                city: "",
-                startDate: "",
-                finishDate: ""
+            if(event.target.value === "work") {
+                let newState = {...prevState}
+                let newWorkInfo = {
+                    position: "",
+                    company: "",
+                    city: "",
+                    startDate: "",
+                    finishDate: ""
+                }
+                newState.workInfoList = prevState.workInfoList.concat(prevState.workInfo)
+                newState.workInfo = newWorkInfo;
+                // console.log(prevState)
+                // console.log(newState)
+                return newState
+            } else if (event.target.value === "education") {
+                let newState = {...prevState}
+                let newEducationInfo = {
+                    universityName: "",
+                    schoolLocation: "",
+                    degree: "",
+                    subject: "",
+                    enrollementDate: "",
+                    graduationDate: "",
+                }
+                newState.educationInfoList = prevState.educationInfoList.concat(prevState.educationInfo)
+                newState.educationInfo = newEducationInfo;
+                console.log(prevState)
+                console.log(newState)
+                return newState
             }
-            newState.workInfoList = prevState.workInfoList.concat(prevState.workInfo)
-            newState.workInfo = newWorkInfo;
-            // console.log(prevState)
-            // console.log(newState)
-            return newState
+           
         })
     }
 
@@ -70,6 +98,12 @@ class CV extends Component {
                 let workInfo = {...prevState.workInfo};
                 workInfo[name] = value
                 return {workInfo}
+            } else if (name in prevState.educationInfo) {
+                let educationInfo = {...prevState.educationInfo};
+                educationInfo[name] = value
+                return {educationInfo}
+            } else {
+                return
             }
         })
     }
@@ -79,7 +113,7 @@ class CV extends Component {
             <main>
                 <PersonalDetails info={this.state.personalInfo} getInput={this.handleInput} />
                 <WorkExperience info={this.state.workInfo} getInput={this.handleInput} add={this.handleAdd}/>
-                <Education  />
+                <Education info={this.state.educationInfo} getInput={this.handleInput} add={this.handleAdd}/>
             </main>
         )
     }
