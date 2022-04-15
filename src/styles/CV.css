@@ -1,0 +1,9 @@
+.main--cv {
+    padding: 60px;
+}
+
+input {
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+}

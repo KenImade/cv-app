@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Education from "./Education";
 import PersonalDetails from "./PersonalDetails";
 import WorkExperience from "./WorkExperience";
+import "../styles/CV.css";
 
 class CV extends Component {
 
@@ -110,7 +111,7 @@ class CV extends Component {
 
     render() {
         return (
-            <main>
+            <main className="main--cv">
                 <PersonalDetails info={this.state.personalInfo} getInput={this.handleInput} />
                 <WorkExperience info={this.state.workInfo} getInput={this.handleInput} add={this.handleAdd}/>
                 <Education info={this.state.educationInfo} getInput={this.handleInput} add={this.handleAdd}/>
