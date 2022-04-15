@@ -8,17 +8,28 @@ class CV extends Component {
     constructor() {
         super()
         this.state = {
-            firstName: "",
-            lastName: "",
-            title: "",
-            address: "",
-            phoneNumber: "",
-            email: "",
-            description: ""
+            personalInfo: {
+                firstName: "",
+                lastName: "",
+                title: "",
+                address: "",
+                phoneNumber: "",
+                email: "",
+                description: ""
+            },
+            workInfoList: [],
+            workInfo: {
+                position: "",
+                company: "",
+                city: "",
+                startDate: "",
+                finishDate: ""
+            }
         };
 
         this.handleInput = this.handleInput.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleAdd = this.handleAdd.bind(this)
     }
 
     handleSubmit(event) {
@@ -26,13 +37,39 @@ class CV extends Component {
         console.log(this.state)
     }
 
+    handleAdd(event) {
+        event.preventDefault()
+        this.setState((prevState) => {
+            let newState = {...prevState}
+            let newWorkInfo = {
+                position: "",
+                company: "",
+                city: "",
+                startDate: "",
+                finishDate: ""
+            }
+            newState.workInfoList = prevState.workInfoList.concat(prevState.workInfo)
+            newState.workInfo = newWorkInfo;
+            // console.log(prevState)
+            // console.log(newState)
+            return newState
+        })
+    }
+
     handleInput(event) {
         console.log(event.target.name)
         console.log(event.target.value)
         const {name, value} = event.target
-        this.setState(() => {
-            return {
-                [name]: value 
+        this.setState((prevState) => {
+            
+            if(name in prevState.personalInfo) {
+                let personalInfo = { ...prevState.personalInfo};
+                personalInfo[name] = value
+                return {personalInfo}
+            } else if (name in prevState.workInfo) {
+                let workInfo = {...prevState.workInfo};
+                workInfo[name] = value
+                return {workInfo}
             }
         })
     }
@@ -40,9 +77,9 @@ class CV extends Component {
     render() {
         return (
             <main>
-                <PersonalDetails info={this.state} getInput={this.handleInput} />
+                <PersonalDetails info={this.state.personalInfo} getInput={this.handleInput} />
+                <WorkExperience info={this.state.workInfo} getInput={this.handleInput} add={this.handleAdd}/>
                 <Education  />
-                <WorkExperience />
             </main>
         )
     }

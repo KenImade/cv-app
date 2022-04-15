@@ -1,0 +1,9 @@
+.work--experience {
+    padding: 20px;
+}
+
+.work--experience--form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
