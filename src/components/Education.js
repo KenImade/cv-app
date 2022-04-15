@@ -52,8 +52,9 @@ class Education extends Component {
                         onChange={this.props.getInput}
                         value={graduationDate}
                     />
+                    <button value="education" onClick={this.props.add}>Add</button>
                 </div>
-                <button value="education" onClick={this.props.add}>Add</button>
+                
             </section>
         )
     }
