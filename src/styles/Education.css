@@ -2,6 +2,11 @@
     padding: 20px;
 }
 
+.education--details--title {
+    font-size: 24px;
+    padding-bottom: 10px;
+}
+
 .education--details--form {
     display: flex;
     flex-direction: column;
