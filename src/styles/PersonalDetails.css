@@ -1,0 +1,9 @@
+.personal--details {
+    padding: 20px;
+}
+
+.personal--details--form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
